@@ -1,8 +1,8 @@
-import Url from '../models/Url.js';
+import mongoose from 'mongoose';
 import { nanoid } from 'nanoid';
+import Url from '../models/Url.js';
 import AppError from '../utils/AppError.js';
 import { decodeCursor, encodeCursor } from '../utils/pagination.js';
-import mongoose from 'mongoose';
 
 export const createShortUrlService = async ({ originalUrl }) => {
   if (!originalUrl) {
@@ -119,4 +119,13 @@ export const getAllService = async ({
       hasNextPage,
     },
   };
+};
+
+export const deleteItems = async ({ id }) => {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new AppError('Invalid id', 400);
+  }
+  const item = await Url.findByIdAndDelete(id);
+  if (!item) throw new AppError('Not found!', 404);
+  return { deletedId: item._id };
 };

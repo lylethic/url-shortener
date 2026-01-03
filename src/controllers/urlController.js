@@ -3,6 +3,7 @@ import {
   createShortUrlService,
   redirectService,
   getAllService,
+  deleteItems,
 } from '../services/urlService.js';
 import { sendResponse } from '../utils/response.js';
 import { parseCursorPagination } from '../utils/pagination.js';
@@ -67,6 +68,17 @@ export const getAllUrl = catchAsync(async (req, res) => {
     statusCode: 200,
     message_en: 'Fetched Urls',
     message: '',
+    data: result,
+  });
+});
+
+export const deleteItemAsync = catchAsync(async (req, res) => {
+  const result = deleteItems({ id: req.params.id });
+  return sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Xóa thành công',
+    message_en: 'Delete successfully',
     data: result,
   });
 });
