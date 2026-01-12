@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/shorten', getAllUrl);
 router.post('/shorten', createShortUrl);
 
-router.get('/:shortId', redirectUrl);
+// router.get('/:shortId', redirectUrl);
 
 // hard delete
 router.delete('/shorten/:id', deleteItemAsync);
