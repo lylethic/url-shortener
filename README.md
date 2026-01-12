@@ -54,6 +54,13 @@ This service exposes a simple Express-driven API for generating short links, red
 | DELETE | `/api/shorten/:id` | Hard-delete a record by Mongo ID. |
 ```
 
+## Using swagger
+
+> Access to the link: {BASE_URL}/{PORT}/api/docs
+> For example: http://localhost:5000/api/docs
+
+## Using Postman
+
 ### POST `/api/shorten`
 
 - Request body: `{ "originalUrl": "https://example.com" }`
